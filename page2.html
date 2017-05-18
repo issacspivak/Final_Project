@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+<header>
+    <nav>
+        <h1>Web Store</h1>
+        <ul>
+            <li><a href="Project1.html">Home</a></li>
+            <li><a href="page2.html">Men</a></li>
+            <li><a href="page3.html">Women</a></li>
+            <li><a href="page4.html">Kids</a></li>
+            <li><a href="page5.html">Checkout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<head>
+    <title>Best Store Ever</title>
+    <script>
+        function ShowCartItems(){
+            var TheCartItems = document.getElementById('cartItemImages');
+            var TheImageNodeList = TheCartItems.getElementsByTagName('div');
+            for(i = 0; i<TheImageNodeList.length;i++){
+                TheImageNodeList[i].style.position = "absolute";
+                TheImageNodeList[i].style.top = (120 * i)+"px";
+                TheImageNodeList[i].style.left = (0)+"px";
+            }
+        }
+
+
+        function FindIfIdExists(obj, id){
+            var TheNodeList = obj.getElementsByTagName('div');
+            for(NodeNumber = 0; NodeNumber<TheNodeList.length; NodeNumber++){
+                if(TheNodeList[NodeNumber].id === id){
+                    return NodeNumber + 1;
+                }
+            }
+            return 0;
+        }
+        function ContinueShopping() {
+            document.getElementById('products').style.visibility='visible';
+            document.getElementById('TheCart').style.visibility='hidden';
+        }
+        function AddToCart(itemToAdd) {
+            var TheCartItemImages = document.getElementById('cartItemImages');
+            var FoundNodeCount = FindIfIdExists(TheCartItemImages,"CartItem"+itemToAdd);
+            if( FoundNodeCount === 0){
+                var TheCartItemToAdd = document.getElementById(itemToAdd).cloneNode(true);
+                TheCartItemToAdd.id = "CartItem"+itemToAdd;
+                TheCartItemToAdd.childNodes[1].height=100;
+                TheCartItemImages.appendChild(TheCartItemToAdd);
+            }
+            document.getElementById('products').style.visibility='hidden';
+            document.getElementById('TheCart').style.visibility='visible';
+        }
+    </script>
+</head>
+
+<div id ="products" style='visibility: visible'>
+    <div id="001" data-price="100.00" style = "position:absolute; left:200px; top:150px;">
+        <img src="supreme-spring-2017-12-1.jpg" height="300">
+    </div>
+    <div style="position: absolute; left:200px; top:450px">
+        <img src="CTA-Add-to-Cart-Button-PNG-Graphic-Cave.png" height="90" onclick='AddToCart("001")'>
+    </div>
+    <div style = "position: absolute; align:right; font-size:18pt; left:425px; top:455px">
+        $100.00
+    </div>
+
+
+    <div id="002" data-price="120.00" style = "position:absolute; left:600px; top:150px;">
+        <img src="001TEC301010_BK0_A_1024x1024.jpg" height="300">
+    </div>
+    <div style="position: absolute; left:600px; top:450px">
+        <img src="CTA-Add-to-Cart-Button-PNG-Graphic-Cave.png" height="90" onclick='AddToCart("002")'>
+    </div>
+    <div style = "position: absolute; align:right; font-size:18pt; left:825px; top:455px">
+        $100.00
+    </div>
+
+
+    <div id="003" data-price="525.00" style = "position:absolute; left:1000px; top:150px;">
+        <img src="800030_1.jpg" height="300">
+    </div>
+    <div style="position: absolute; left:1000px; top:450px">
+        <img src="CTA-Add-to-Cart-Button-PNG-Graphic-Cave.png" height="90" onclick='AddToCart("003")'>
+    </div>
+    <div style = "position: absolute; align:right; font-size:18pt; left:1225px; top:455px">
+        $525.00
+    </div>
+
+</div>
+
+<div id='TheCart' style='visibility: hidden'>
+    <div style = "position: absolute; align:right; font-size: 44pt; left:150px top: 5px">
+        The Cart
+    </div>
+    <div style="position:absolute; left: 475px; top: 65px">
+        <img src="SHOPING-BUTTON.png" height="43" onclick='ContinueShopping()'>
+    </div>
+    <div id="cartItemImages" style="position: absolute; left: 75px; top:150px"></div>
+    <div id="cartItemRemove" style="position: absolute; left: 200px; top:150px"></div>
+    <div id="cartItemPrice" style="position: absolute; left: 250px; top:150px"></div>
+    <div id="cartItemQuantity" style="position: absolute; left: 300px; top:150px"></div>
+    <div id="cartItemTotal" style="position: absolute; left: 350px; top:150px"></div>
+    <div id="cartTotal" style="position: absolute; left: 350px; top:125px">Order Total</div>
+
+</div>
+
+<div id="ThankYouForYourOrder" style='visibility: hidden; font-size: 144pt'>
+    Thank You For Your Order
+</div>
+
+<p>Welcome to the Mens section</p>
+</body>
+</html>
